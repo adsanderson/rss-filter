@@ -6,7 +6,7 @@ let Parser = require('rss-parser');
 exports.handler = async (event, context) => {
     const parser = new Parser();
     const { feedUri, q } = event.queryStringParameters;
-    console.log('feed', feed);
+    console.log('feedUri', feedUri);
     console.log('query', q);
     try {
         const feed = await parser.parseURL(feedUri);
