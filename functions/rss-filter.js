@@ -10,18 +10,26 @@ exports.handler = async (event, context) => {
     console.log('feedUri', feedUri);
     console.log('query', q);
 
-    const feed = await parser.parseURL(feedUri);
-    console.log(feed.title);
-    console.log('original number of items:', feed.items.length);
+    try {
+        const feed = await parser.parseURL(feedUri);
+        console.log(feed.title);
+        console.log('original number of items:', feed.items.length);
 
-    feed.items = feed.items.filter(item => item.title.toLowerCase().includes(q.toLowerCase()));
-    console.log('new number of items     :', feed.items.length);
+        feed.items = feed.items.filter(item => item.title.toLowerCase().includes(q.toLowerCase()));
+        console.log('new number of items     :', feed.items.length);
 
-    var builder = new xml2js.Builder();
-    var xml = builder.buildObject(obj);
+        var builder = new xml2js.Builder();
+        var xml = builder.buildObject(obj);
 
+        return {
+            statusCode: 200,
+            body: xml
+        };
+    } catch (err) {
+        console.log('Error:', err)
+    }
     return {
         statusCode: 200,
-        body: xml
+        body: "Error"
     };
 };
