@@ -38,6 +38,6 @@ exports.handler = async (event, context) => {
 };
 
 function toItemContain(q, item) {
-    return item.title.toLowerCase().includes(q.toLowerCase())
-        || item.summary.toLowerCase().includes(q.toLowerCase());
+    return (item.title && item.title.toLowerCase().includes(q.toLowerCase()))
+        || (item.summary && item.summary.toLowerCase().includes(q.toLowerCase()));
 }
