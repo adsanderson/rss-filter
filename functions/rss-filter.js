@@ -39,7 +39,7 @@ exports.handler = async (event, context) => {
 
 function toItemContain(q, item) {
     console.info('title', item.title)
-    console.info('summary', item.summary)
+    console.info('content', item.content)
     return (item.title && item.title.toLowerCase().includes(q.toLowerCase()))
-        || (item.summary && item.summary.toLowerCase().includes(q.toLowerCase()));
+        || (item.content && item.summary.toLowerCase().includes(q.toLowerCase()));
 }
