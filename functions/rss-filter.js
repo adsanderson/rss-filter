@@ -14,7 +14,7 @@ exports.handler = async (event, context) => {
     const toItemContainsQuery = (item) => toItemContain(q, item);
 
     try {
-        const response = await fetch(mediumFeed)
+        const response = await fetch(feedUri)
         const xmlFeed = await response.text()
         const feed = await xml2js(xmlFeed)
 
