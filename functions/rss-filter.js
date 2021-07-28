@@ -7,18 +7,18 @@ const xml2js = require('xml2js');
 exports.handler = async (event, context) => {
     const parser = new Parser();
     const { feedUri, q } = event.queryStringParameters;
-    console.log('feedUri', feedUri);
-    console.log('query', q);
+    console.info('feedUri', feedUri);
+    console.info('query', q);
 
     const toItemContainsQuery = (item) => toItemContain(q, item);
 
     try {
         const feed = await parser.parseURL(feedUri);
-        console.log(feed.title);
-        console.log('original number of items:', feed.items.length);
+        console.info(feed.title);
+        console.info('original number of items:', feed.items.length);
 
         feed.items = feed.items.filter(toItemContainsQuery);
-        console.log('new number of items     :', feed.items.length);
+        console.info('new number of items     :', feed.items.length);
 
         var builder = new xml2js.Builder();
         var xml = builder.buildObject(feed);
@@ -28,7 +28,7 @@ exports.handler = async (event, context) => {
             body: xml
         };
     } catch (err) {
-        console.log('Error:', err)
+        console.error('Error:', err)
     }
 
     return {
@@ -38,6 +38,8 @@ exports.handler = async (event, context) => {
 };
 
 function toItemContain(q, item) {
+    console.info('title', item.title)
+    console.info('summary', item.summary)
     return (item.title && item.title.toLowerCase().includes(q.toLowerCase()))
         || (item.summary && item.summary.toLowerCase().includes(q.toLowerCase()));
 }
