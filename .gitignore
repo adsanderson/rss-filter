@@ -107,3 +107,7 @@ dist
 node_modules
 /.svelte-kit
 /package
+
+# Netlify output
+/build
+/functions

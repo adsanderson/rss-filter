@@ -23,15 +23,7 @@
 	<form
 		class="new"
 		action=""
-		method="get"
-		use:enhance={{
-			result: async (res, form) => {
-				const body = new FormData(form);				
-				console.log(body);
-				queries = [...queries];
-
-			}
-		}}		
+		method="get"		
 	>
 		<input name="queryToAdd" aria-label="Add query" placeholder="add query" />		
 	</form>
