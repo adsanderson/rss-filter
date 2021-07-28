@@ -18,9 +18,7 @@ exports.handler = async (event, context) => {
         const xmlFeed = await response.text()
         const feed = await parseFeed(xmlFeed)
 
-
         const channel = feed.rss.channel[0];
-
 
         console.info('original title:', channel);
         channel.title = `${channel.title} - Filtered to ${q}`
@@ -28,10 +26,10 @@ exports.handler = async (event, context) => {
 
         console.info('original number of items:', channel.item.length);
 
-        console.info(channel.item[0])
+        // console.info(channel.item[0])
 
-        // channel.item = feed.items.filter(toItemContainsQuery);
-        // console.info('new number of items     :', feed.items.length);
+        channel.item = feed.items.filter(toItemContainsQuery);
+        console.info('new number of items     :', channel.item.length);
 
         var builder = new xml2js.Builder();
         var xml = builder.buildObject(feed);
@@ -51,10 +49,10 @@ exports.handler = async (event, context) => {
 };
 
 function toItemContain(q, item) {
-    console.info('title', item.title)
-    console.info('content', item.content)
-    return (item.title && item.title.toLowerCase().includes(q.toLowerCase()))
-        || (item.content && item.content.toLowerCase().includes(q.toLowerCase()));
+    // console.info('title', item.title)
+    // console.info('description', item.description)
+    return (item.title[0] && item.title[0].toLowerCase().includes(q.toLowerCase()))
+        || (item.description[0] && item.description[0].toLowerCase().includes(q.toLowerCase()));
 }
 
 async function parseFeed(xml) {
