@@ -16,12 +16,15 @@ exports.handler = async (event, context) => {
     try {
         const response = await fetch(feedUri)
         const xmlFeed = await response.text()
-        const rss = await xml2js(xmlFeed)
+        const feed = await xml2js(xmlFeed)
 
-        const feed = rss.channel
+        console.log('feed', feed);
 
-        console.info(feed.title);
-        console.info('original number of items:', feed.item.length);
+
+        // const feed = rss.channel
+
+        // console.info(feed.title);
+        // console.info('original number of items:', feed.item.length);
 
         // feed.items = feed.items.filter(toItemContainsQuery);
         // console.info('new number of items     :', feed.items.length);
