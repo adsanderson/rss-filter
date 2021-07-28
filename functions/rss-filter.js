@@ -14,7 +14,7 @@ exports.handler = async (event, context) => {
     console.log(feed.title);
     console.log('original number of items:', feed.items.length);
 
-    feed.items = feed.items.filter(item => item.title.toLowerCase().contains(q.toLowerCase()));
+    feed.items = feed.items.filter(item => item.title.toLowerCase().includes(q.toLowerCase()));
     console.log('new number of items     :', feed.items.length);
 
     var builder = new xml2js.Builder();
