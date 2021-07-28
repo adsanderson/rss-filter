@@ -1,0 +1,22 @@
+{
+  "name": "rss-filter",
+  "version": "1.0.0",
+  "description": "function for filtering an rss feed",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adsanderson/rss-filter.git"
+  },
+  "author": "Adam Sanderson",
+  "bugs": {
+    "url": "https://github.com/adsanderson/rss-filter/issues"
+  },
+  "homepage": "https://github.com/adsanderson/rss-filter#readme",
+  "dependencies": {
+    "@netlify/functions": "^0.7.2",
+    "rss-parser": "^3.12.0"
+  }
+}
