@@ -18,15 +18,19 @@ exports.handler = async (event, context) => {
         const xmlFeed = await response.text()
         const feed = await parseFeed(xmlFeed)
 
-        console.log('feed', feed);
 
-        console.log('title', feed.rss.channel[0])
-        // const feed = rss.channel
+        const channel = feed.rss.channel[0];
 
-        // console.info(feed.title);
-        // console.info('original number of items:', feed.item.length);
 
-        // feed.items = feed.items.filter(toItemContainsQuery);
+        console.info('original title:', channel);
+        channel.title = `${channel.title} - Filtered to ${q}`
+        console.info('new title     :', channel.title);
+
+        console.info('original number of items:', channel.item.length);
+
+        console.info(channel.item[0])
+
+        // channel.item = feed.items.filter(toItemContainsQuery);
         // console.info('new number of items     :', feed.items.length);
 
         var builder = new xml2js.Builder();
