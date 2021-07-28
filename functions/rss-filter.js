@@ -3,7 +3,7 @@ let Parser = require('rss-parser');
 /**
  * @type import("@netlify/functions").Handler
  */
-const handler = async (event, context) => {
+exports.handler = async (event, context) => {
     const parser = new Parser();
     const { feed, q } = event.queryStringParameters;
     console.log('feed', feed);
@@ -20,5 +20,3 @@ const handler = async (event, context) => {
         body: JSON.stringify({ message: "Hello World" }),
     };
 };
-
-export { handler };
