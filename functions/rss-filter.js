@@ -1,4 +1,4 @@
-const xml2js = require('xml2js-es6-promise');
+const xml2js = require('xml2js');
 const fetch = require('node-fetch');
 
 /**
@@ -16,11 +16,11 @@ exports.handler = async (event, context) => {
     try {
         const response = await fetch(feedUri)
         const xmlFeed = await response.text()
-        const feed = await xml2js(xmlFeed)
+        const feed = await parseFeed(xmlFeed)
 
         console.log('feed', feed);
 
-
+        console.log('title', feed.rss.channel[0])
         // const feed = rss.channel
 
         // console.info(feed.title);
@@ -51,4 +51,12 @@ function toItemContain(q, item) {
     console.info('content', item.content)
     return (item.title && item.title.toLowerCase().includes(q.toLowerCase()))
         || (item.content && item.content.toLowerCase().includes(q.toLowerCase()));
+}
+
+async function parseFeed(xml) {
+    return new Promise(resolve => {
+        xml2js.parseString(xml, function (err, result) {
+            resolve(result);
+        });
+    })
 }
