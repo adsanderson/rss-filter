@@ -17,8 +17,8 @@ exports.handler = async (event, context) => {
         console.info(feed.title);
         console.info('original number of items:', feed.items.length);
 
-        feed.items = feed.items.filter(toItemContainsQuery);
-        console.info('new number of items     :', feed.items.length);
+        // feed.items = feed.items.filter(toItemContainsQuery);
+        // console.info('new number of items     :', feed.items.length);
 
         var builder = new xml2js.Builder();
         var xml = builder.buildObject(feed);
