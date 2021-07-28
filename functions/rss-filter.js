@@ -1,11 +1,10 @@
-import Parser from 'rss-parser';
-
-const parser = new Parser();
+let Parser = require('rss-parser');
 
 /**
  * @type import("@netlify/functions").Handler
  */
 const handler = async (event, context) => {
+    const parser = new Parser();
     const { feed, q } = event.queryStringParameters;
     console.log('feed', feed);
     console.log('query', q);
