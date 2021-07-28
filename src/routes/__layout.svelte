@@ -2,14 +2,11 @@
 	import '../app.css';
 </script>
 
-
 <main>
 	<slot />
 </main>
 
-<footer>
-	
-</footer>
+<footer />
 
 <style>
 	main {
@@ -30,7 +27,7 @@
 		align-items: center;
 		padding: 40px;
 	}
-	
+
 	@media (min-width: 480px) {
 		footer {
 			padding: 40px 0;

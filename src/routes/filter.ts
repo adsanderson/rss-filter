@@ -46,8 +46,8 @@ export const get: RequestHandler = async (request) => {
 		channel.item = channel.item.filter(toItemContainsQuery);
 		console.info('new number of items     :', channel.item.length);
 
-		var builder = new xml2js.Builder();
-		var xml = builder.buildObject(feed);
+		const builder = new xml2js.Builder();
+		const xml = builder.buildObject(feed);
 
 		return {
 			statusCode: 200,

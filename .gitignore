@@ -109,5 +109,5 @@ node_modules
 /package
 
 # Netlify output
-/build
-/functions
+build
+functions
