@@ -10,6 +10,8 @@ exports.handler = async (event, context) => {
     console.log('feedUri', feedUri);
     console.log('query', q);
 
+    const toItemContainsQuery = (item) => toItemContain(q, item);
+
     try {
         const feed = await parser.parseURL(feedUri);
         console.log(feed.title);
@@ -35,7 +37,7 @@ exports.handler = async (event, context) => {
     };
 };
 
-function toItemContainsQuery(item) {
+function toItemContain(q, item) {
     return item.title.toLowerCase().includes(q.toLowerCase())
         || item.summary.toLowerCase().includes(q.toLowerCase());
 }
