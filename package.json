@@ -17,7 +17,7 @@
   "homepage": "https://github.com/adsanderson/rss-filter#readme",
   "dependencies": {
     "@netlify/functions": "^0.7.2",
-    "rss-parser": "^3.12.0",
-    "xml2js": "^0.4.23"
+    "node-fetch": "^2.6.1",
+    "xml2js-es6-promise": "^1.1.1"
   }
 }

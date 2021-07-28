@@ -1,19 +1,23 @@
-const Parser = require('rss-parser');
-const xml2js = require('xml2js');
+const xml2js = require('xml2js-es6-promise');
+const fetch = require('node-fetch');
 
 /**
  * @type import("@netlify/functions").Handler
  */
 exports.handler = async (event, context) => {
-    const parser = new Parser();
+    // const parser = new Parser();
     const { feedUri, q } = event.queryStringParameters;
     console.info('feedUri', feedUri);
     console.info('query', q);
 
+
     const toItemContainsQuery = (item) => toItemContain(q, item);
 
     try {
-        const feed = await parser.parseURL(feedUri);
+        const response = await fetch(mediumFeed)
+        const xmlFeed = await response.text()
+        const feed = await xml2js(xmlFeed)
+
         console.info(feed.title);
         console.info('original number of items:', feed.items.length);
 
