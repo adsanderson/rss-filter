@@ -20,7 +20,7 @@ exports.handler = async (event, context) => {
 
         const channel = feed.rss.channel[0];
 
-        console.info('original title:', channel);
+        console.info('original title:', channel.title);
         channel.title = `${channel.title} - Filtered to ${q}`
         console.info('new title     :', channel.title);
 
@@ -28,8 +28,8 @@ exports.handler = async (event, context) => {
 
         // console.info(channel.item[0])
 
-        const channelItem = channel.item.filter(toItemContainsQuery);
-        console.info('new number of items     :', channelItem.length);
+        channel.item = channel.item.filter(toItemContainsQuery);
+        console.info('new number of items     :', channel.item.length);
 
         var builder = new xml2js.Builder();
         var xml = builder.buildObject(feed);
