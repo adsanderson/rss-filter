@@ -15,11 +15,11 @@ exports.handler = async (event, context) => {
         console.log(feed.title);
         console.log('original number of items:', feed.items.length);
 
-        feed.items = feed.items.filter(item => item.title.toLowerCase().includes(q.toLowerCase()));
+        feed.items = feed.items.filter(toItemContainsQuery);
         console.log('new number of items     :', feed.items.length);
 
         var builder = new xml2js.Builder();
-        var xml = builder.buildObject(obj);
+        var xml = builder.buildObject(feed);
 
         return {
             statusCode: 200,
@@ -28,8 +28,14 @@ exports.handler = async (event, context) => {
     } catch (err) {
         console.log('Error:', err)
     }
+
     return {
-        statusCode: 200,
+        statusCode: 500,
         body: "Error"
     };
 };
+
+function toItemContainsQuery(item) {
+    return item.title.toLowerCase().includes(q.toLowerCase())
+        || item.summary.toLowerCase().includes(q.toLowerCase());
+}
