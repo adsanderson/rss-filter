@@ -41,5 +41,5 @@ function toItemContain(q, item) {
     console.info('title', item.title)
     console.info('content', item.content)
     return (item.title && item.title.toLowerCase().includes(q.toLowerCase()))
-        || (item.content && item.summary.toLowerCase().includes(q.toLowerCase()));
+        || (item.content && item.content.toLowerCase().includes(q.toLowerCase()));
 }
