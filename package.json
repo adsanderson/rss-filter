@@ -42,6 +42,7 @@
 		"@fontsource/fira-mono": "^4.2.2",
 		"@lukeed/uuid": "^2.0.0",
 		"cookie": "^0.4.1",
+		"encoding": "^0.1.13",
 		"node-fetch": "^2.6.1",
 		"xml2js": "^0.4.23"
 	}
