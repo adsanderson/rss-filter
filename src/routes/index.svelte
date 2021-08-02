@@ -12,7 +12,7 @@
 
 <section>
 	<form class="new" action="/filter" method="get">
-		<input name="filterUri" aria-label="Add initial feed" placeholder="feed value" />
+		<input name="feedUri" aria-label="Add initial feed" placeholder="feed value" />
 		<input name="q" aria-label="Add query regexp" placeholder="add query" />
 		<input type="submit" value="Get feed">
 	</form>
