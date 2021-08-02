@@ -13,11 +13,10 @@
 <section>
 	<form class="new" action="/filter" method="get">
 		<input name="filterUri" aria-label="Add initial feed" placeholder="feed value" />
+		<input name="q" aria-label="Add query regexp" placeholder="add query" />
+		<input type="submit" value="Get feed">
 	</form>
-	<form class="new" action="" method="get">
-		<input name="queryToAdd" aria-label="Add query" placeholder="add query" />
-	</form>
-
+	
 	{#each queries as query}
 		<span>{query}</span>
 	{/each}
