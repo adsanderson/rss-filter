@@ -29,10 +29,13 @@ export const get: RequestHandler = async (request) => {
 	const toItemContainsQuery = (item) => toItemContain(q, item);
 
 	try {
+		console.time('fetch feed');
 		const response = await fetch(feedUri);
 		const xmlFeed = await response.text();
+		console.timeEnd('fetch feed');
+		console.time('parse feed');
 		const feed = (await parseFeed(xmlFeed)) as Feed;
-
+		console.timeEnd('parse feed');
 		const channel = feed.rss.channel[0];
 
 		console.info('original title:', channel.title);
@@ -43,7 +46,9 @@ export const get: RequestHandler = async (request) => {
 
 		// console.info(channel.item[0])
 
+		console.time('filter feed');
 		channel.item = channel.item.filter(toItemContainsQuery);
+		console.timeEnd('filter feed');
 		console.info('new number of items     :', channel.item.length);
 
 		const builder = new xml2js.Builder();
@@ -64,11 +69,10 @@ export const get: RequestHandler = async (request) => {
 };
 
 function toItemContain(q, item) {
-	// console.info('title', item.title)
-	// console.info('description', item.description)
+	const query = new RegExp(q, 'i');
 	return (
-		(item.title[0] && item.title[0].toLowerCase().includes(q.toLowerCase())) ||
-		(item.description[0] && item.description[0].toLowerCase().includes(q.toLowerCase()))
+		(item.title[0] && query.test(item.title[0])) ||
+		(item.description[0] && query.test(item.description[0]))
 	);
 }
 
