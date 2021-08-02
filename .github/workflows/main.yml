@@ -38,7 +38,7 @@ jobs:
           retention-days: 1
 
   deploy:
-    # The type of runner that the job will run on
+    needs: build
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
