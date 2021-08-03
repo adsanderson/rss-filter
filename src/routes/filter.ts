@@ -54,8 +54,16 @@ export const get: RequestHandler = async (request) => {
 		const builder = new xml2js.Builder();
 		const xml = builder.buildObject(feed);
 
+		const minutes_30 = 60 * 30;
+
+		const headers = {
+			'Cache-Control': `max-age=${minutes_30}, s-max-age=${minutes_30 * 2}`,
+			'Content-Type': 'application/xml'
+		};
+
 		return {
 			statusCode: 200,
+			headers,
 			body: xml
 		};
 	} catch (err) {
